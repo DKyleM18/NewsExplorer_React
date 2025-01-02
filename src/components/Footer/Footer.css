@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 85px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.footer__links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer__link {
+  margin: 0;
+}
+
+.footer__name {
+  margin: 0;
+}
+
+.footer__copyright {
+  margin: 0;
+}
