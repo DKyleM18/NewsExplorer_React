@@ -1,17 +1,27 @@
-const baseUrl =
+export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.d.kyle.blinklab.com"
-    : "http://localhost:3001";
+    ? "https://nomoreparties.co/news/v2/everything"
+    : "https://newsapi.org/v2/everything";
 
-function checkResponse(res) {
+const apiKey = "34f078d982d34b3e85336be8d6660dac";
+
+export function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Error: ${res.status}`);
 }
 
-function request(url, options) {
+export function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
 
-export { baseUrl, checkResponse, request };
+export function getItems(query) {
+  const currentDate = new Date();
+  const fromDate = new Date();
+  fromDate.setDate(currentDate.getDate() - 7);
+
+  const url = `${baseUrl}?q=${query}&apiKey=${apiKey}&from=${fromDate.toISOString()}&to=${currentDate.toISOString()}&pageSize=100`;
+
+  return request(url);
+}

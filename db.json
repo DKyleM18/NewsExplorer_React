@@ -1,0 +1,25 @@
+{
+  "savedArticles": [
+    {
+      "name": "item1",
+      "imageUrl": "https://preview.redd.it/this-is-a-baby-giraffe-giraffes-are-the-tallest-mammals-on-v0-mvv5bpf4uh591.jpg?auto=webp&s=d8896b33d377b666580e3d42faea101f10ba3e65",
+      "date": "2024-12-15",
+      "description": "A major storm swept across the region last night, causing widespread power outages and significant damage to infrastructure.",
+      "author": "Jane Doe"
+    },
+    {
+      "name": "item2",
+      "imageUrl": "https://www.cherokeelodgecondos.com/media/65cbb163a5f14780f50d42b0/large.webp",
+      "date": "2024-12-20",
+      "description": "The global tech industry is set for a transformative year, with advancements in AI and blockchain making headlines.",
+      "author": "John Smith"
+    },
+    {
+      "name": "item3",
+      "imageUrl": "https://www.visittenaya.com/dbcwp/wp-content/uploads/2022/11/visittenaya-copy-exploreyosemite-yosemite-falls.jpg",
+      "date": "2024-12-30",
+      "description": "After weeks of negotiations, world leaders have agreed on a historic climate accord aimed at reducing carbon emissions.",
+      "author": "Emily Johnson"
+    }
+  ]
+}

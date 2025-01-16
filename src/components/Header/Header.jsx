@@ -1,28 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// import SearchForm from "../SearchForm/SearchForm";
-import header_background from "../../assets/main-background.jpg";
+import Navigation from "../Navigation/Navigation";
+import SearchForm from "../SearchForm/SearchForm";
+import headerBackground from "../../assets/header-background.png";
 import "./Header.css";
 
-export default function Header({ handleLoginClick }) {
+export default function Header({
+  handleLoginClick,
+  handleSearchSubmit,
+  isLoggedIn,
+  currentUser,
+}) {
   return (
-    <header className="header">
-      <div className="header_bar">
-        <h1 className="header_bar-title">News Explorer</h1>
-        <div className="header_bar-buttons">
-          <button type="button" className="header_bar-button-home">
-            Home
-          </button>
-          <button
-            onClick={handleLoginClick}
-            type="text"
-            className="header_bar-button-register"
-          >
-            Sign In
-          </button>
+    <header
+      className="header"
+      style={{ backgroundImage: `url(${headerBackground})` }}
+    >
+      <Navigation
+        handleLoginClick={handleLoginClick}
+        isLoggedIn={isLoggedIn}
+        currentUser={currentUser}
+      />
+      <div className="header__content">
+        <div className="header__wrapper">
+          <h1 className="header__title">What's going on in the world?</h1>
+          <p className="header__caption">
+            Find the latest news on any topic and save them on your personal
+            account.
+          </p>
+        </div>
+        <div className="header__search-form">
+          <SearchForm handleSearchSubmit={handleSearchSubmit} />
         </div>
       </div>
-      {/* <SearchForm /> */}
     </header>
   );
 }

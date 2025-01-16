@@ -11,6 +11,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { checkToken, signin, signup } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
+import { getItems } from "../../utils/api";
 import "./App.css";
 
 function App() {
@@ -39,6 +40,12 @@ function App() {
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }
+
+  const handleSearchSubmit = () => {
+    const makeRequest = () => {
+      return getItems().then((res) => res.articles);
+    };
+  };
 
   const handleLogin = ({ email, password }) => {
     const makeRequest = () => {
@@ -110,6 +117,8 @@ function App() {
             isLoggedIn={isLoggedIn}
             handleRegisterClick={handleRegisterClick}
             handleLoginClick={handleLoginClick}
+            currentUser={currentUser}
+            handleSearchSubmit={handleSearchSubmit}
           />
           <Routes>
             <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
