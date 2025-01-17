@@ -6,6 +6,7 @@ import "./Header.css";
 
 export default function Header({
   handleLoginClick,
+  handleLogoutClick,
   handleSearchSubmit,
   isLoggedIn,
   currentUser,
@@ -17,6 +18,7 @@ export default function Header({
     >
       <Navigation
         handleLoginClick={handleLoginClick}
+        handleLogoutClick={handleLogoutClick}
         isLoggedIn={isLoggedIn}
         currentUser={currentUser}
       />

@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -7,10 +8,18 @@ export default function Footer() {
         &copy; 2024 Supersite, Powered by News API
       </p>
       <div className="footer__links">
-        <p className="footer__link">Home</p>
-        <p className="footer__link">TripleTen</p>
-        <p className="footer__link">FB</p>
-        <p className="footer__link">GH</p>
+        <Link to="/" className="footer__link">
+          <p className="footer__link_home">Home</p>
+        </Link>
+        <a href="https://tripleten.com/" className="footer__link">
+          TripleTen
+        </a>
+        <a href="https://github.com" className="footer__link">
+          <img src="/src/assets/github-icon.png" alt="GitHub icon" />
+        </a>
+        <a href="https://www.facebook.com" className="footer__link">
+          <img src="/src/assets/facebook-icon.png" alt="Facebook icon" />
+        </a>
       </div>
     </footer>
   );

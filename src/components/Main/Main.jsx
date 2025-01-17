@@ -1,9 +1,23 @@
 import "./Main.css";
+import Preloader from "../Preloader/Preloader";
+import NewsCardList from "../NewsCardList/NewsCardList";
 
-export default function Main() {
+export default function Main({ isLoading, isLoggedIn }) {
   return (
     <main className="main">
-      <h1 className="main__title">Welcome to NewsExplorer</h1>
+      {isLoading ? (
+        <div className="main__preloader">
+          <div className="main__preloader_circle">
+            <Preloader />
+          </div>
+          <p className="main__preloader_text">Searching for news...</p>
+        </div>
+      ) : (
+        <div className="main__content">
+          <h2 className="main__title">Search results</h2>
+          <NewsCardList isLoggedIn={isLoggedIn} />
+        </div>
+      )}
     </main>
   );
 }

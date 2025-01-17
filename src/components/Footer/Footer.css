@@ -2,19 +2,29 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 85px;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
+  height: 80px;
+  padding: 0 104px;
 }
 
 .footer__links {
   display: flex;
+  align-items: center;
   gap: 20px;
+  text-decoration: none;
 }
 
 .footer__link {
   margin: 0;
+  text-decoration: none;
+  color: black;
+  cursor: default;
+}
+
+.footer__link_home {
+  text-decoration: none;
 }
 
 .footer__name {

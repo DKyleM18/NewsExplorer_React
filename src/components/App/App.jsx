@@ -3,8 +3,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
-// import About from "../About/About";
+import About from "../About/About";
 import SavedNews from "../SavedNews/SavedNews";
+import Navigation from "../Navigation/Navigation";
+import SavedNewsNavigation from "../SavedNewsNavigation/SavedNewsNavigation";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -15,7 +17,7 @@ import { getItems } from "../../utils/api";
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -66,6 +68,12 @@ function App() {
     handleSubmit(makeRequest);
   };
 
+  const handleLogout = () => {
+    removeToken();
+    setCurrentUser({});
+    setIsLoggedIn(false);
+  };
+
   const handleRegistration = ({ name, email, password }) => {
     const makeRequest = () => {
       return signup({ name, email, password }).then(() =>
@@ -113,26 +121,38 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <div className="app__content">
-          <Header
-            isLoggedIn={isLoggedIn}
-            handleRegisterClick={handleRegisterClick}
-            handleLoginClick={handleLoginClick}
-            currentUser={currentUser}
-            handleSearchSubmit={handleSearchSubmit}
-          />
           <Routes>
-            <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    handleLoginClick={handleLoginClick}
+                    handleLogoutClick={handleLogout}
+                    currentUser={currentUser}
+                    handleSearchSubmit={handleSearchSubmit}
+                  />
+                  <Main isLoggedIn={isLoggedIn} isLoading={isLoading} />
+                  <About />
+                </>
+              }
+            />
             <Route
               path="/saved-news"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <SavedNewsNavigation
+                    isLoggedIn={isLoggedIn}
+                    currentUser={currentUser}
+                    handleLogoutClick={handleLogout}
+                  />
                   <SavedNews />
                 </ProtectedRoute>
               }
             />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          {/* <About />                     */}
           <Footer />
         </div>
         <RegisterModal
