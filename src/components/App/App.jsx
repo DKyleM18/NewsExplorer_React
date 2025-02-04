@@ -11,24 +11,22 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { checkToken, signin, signup } from "../../utils/auth";
+import { checkToken, signup } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
 import { getItems } from "../../utils/api";
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [userToken, setUserToken] = useState("");
+  const [savedCards, setSavedCards] = useState([]);
+  const [newsCards, setNewsCards] = useState([]);
 
   const handleLoginClick = () => {
     setActiveModal("login");
-  };
-
-  const handleRegisterClick = () => {
-    setActiveModal("register");
   };
 
   const handleModalClose = () => {
@@ -47,26 +45,51 @@ function App() {
     const makeRequest = () => {
       return getItems().then((res) => res.articles);
     };
+    handleSubmit(makeRequest);
+  };
+
+  const asdfUser = {
+    email: "asdf@mail.com",
+    username: "asdfUser",
+    password: "asdfasdf",
+    name: "asdf",
+  };
+
+  const signin = (email, password) => {
+    if (email === asdfUser.email && password === asdfUser.password) {
+      return { success: true };
+    } else {
+      return { success: false };
+    }
   };
 
   const handleLogin = ({ email, password }) => {
-    const makeRequest = () => {
-      return signin({ email, password })
-        .then((res) => {
-          setToken(res);
-          setUserToken(res.token);
-          return res.token;
-        })
-        .then((token) => {
-          return checkToken(token);
-        })
-        .then((user) => {
-          setCurrentUser(user);
-          setIsLoggedIn(true);
-        });
-    };
-    handleSubmit(makeRequest);
+    const res = signin(email, password);
+    if (res.success) {
+      setCurrentUser(asdfUser);
+      setIsLoggedIn(true);
+      handleModalClose();
+    }
   };
+
+  // const handleLogin = ({ email, password }) => {
+  //   const makeRequest = () => {
+  //     return signin({ email, password })
+  //       .then((res) => {
+  //         setToken(res);
+  //         setUserToken(res.token);
+  //         return res.token;
+  //       })
+  //       .then((token) => {
+  //         return checkToken(token);
+  //       })
+  //       .then((user) => {
+  //         setCurrentUser(user);
+  //         setIsLoggedIn(true);
+  //       });
+  //   };
+  //   handleSubmit(makeRequest);
+  // };
 
   const handleLogout = () => {
     removeToken();

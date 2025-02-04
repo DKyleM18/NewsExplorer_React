@@ -1,4 +1,6 @@
-import { baseUrl, request } from "./api";
+import { request } from "./api";
+
+const baseUrl = "https://localhost:3001";
 
 function signup({ name, email, password }) {
   return request(`${baseUrl}/signup`, {
