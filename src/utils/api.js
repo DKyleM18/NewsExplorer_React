@@ -1,27 +1,35 @@
-export const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
-
-const apiKey = "34f078d982d34b3e85336be8d6660dac";
-
-export function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
+export function getItems() {
+  return new Promise((resolve, reject) => {
+    resolve([
+      {
+        _id: "65f7368dfb74bd6a92114c85",
+        title: "A News Article",
+        imageUrl: "https://via.placeholder.com/150",
+        date: "2024-12-15",
+        description: "A news article description",
+        source: "The New York Times",
+      },
+      {
+        _id: "65f7368dfb74bd6a92114c86",
+        title: "Another News Article",
+        imageUrl: "https://via.placeholder.com/151",
+        date: "2024-12-16",
+        description: "Another news article description",
+        source: "The Wall Street Journal",
+      },
+    ]);
+  });
 }
 
-export function request(url, options) {
-  return fetch(url, options).then(checkResponse);
-}
-
-export function getItems(query) {
-  const currentDate = new Date();
-  const fromDate = new Date();
-  fromDate.setDate(currentDate.getDate() - 7);
-
-  const url = `${baseUrl}?q=${query}&apiKey=${apiKey}&from=${fromDate.toISOString()}&to=${currentDate.toISOString()}&pageSize=100`;
-
-  return request(url);
+export function saveArticle(article) {
+  return new Promise((resolve, reject) => {
+    resolve({
+      _id: "65f7368dfb74bd6a92114c89",
+      title: article.title,
+      imageUrl: article.imageUrl,
+      date: article.date,
+      description: article.description,
+      source: article.source,
+    });
+  });
 }

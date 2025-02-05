@@ -11,9 +11,11 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { checkToken, signup } from "../../utils/auth";
+import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
+import { checkToken, authorize } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
 import { getItems } from "../../utils/api";
+import { getNewsItems } from "../../utils/newsApi";
 import "./App.css";
 
 function App() {
@@ -24,6 +26,9 @@ function App() {
   const [userToken, setUserToken] = useState("");
   const [savedCards, setSavedCards] = useState([]);
   const [newsCards, setNewsCards] = useState([]);
+  const [keyword, setKeyword] = useState("");
+  const [savedKeywords, setSavedKeywords] = useState([]);
+  const [noResults, setNoResults] = useState(false);
 
   const handleLoginClick = () => {
     setActiveModal("login");
@@ -41,55 +46,44 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  const handleSearchSubmit = () => {
-    const makeRequest = () => {
-      return getItems().then((res) => res.articles);
-    };
-    handleSubmit(makeRequest);
-  };
+  const handleSearchSubmit = (keyword) => {
+    setKeyword(keyword);
+    setIsLoading(true);
 
-  const asdfUser = {
-    email: "asdf@mail.com",
-    username: "asdfUser",
-    password: "asdfasdf",
-    name: "asdf",
-  };
-
-  const signin = (email, password) => {
-    if (email === asdfUser.email && password === asdfUser.password) {
-      return { success: true };
-    } else {
-      return { success: false };
-    }
+    getNewsItems(keyword)
+      .then((response) => {
+        const articles = response.articles;
+        if (!articles || articles.length === 0) setNoResults(true);
+        setNewsCards(
+          articles.map((article) => {
+            return {
+              ...article,
+              keyword: keyword,
+            };
+          })
+        );
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+    setNoResults(false);
   };
 
   const handleLogin = ({ email, password }) => {
-    const res = signin(email, password);
-    if (res.success) {
-      setCurrentUser(asdfUser);
-      setIsLoggedIn(true);
-      handleModalClose();
-    }
+    return authorize({ email, password })
+      .then((res) => {
+        setToken(res.token);
+        setUserToken(res.token);
+        return res.token;
+      })
+      .then((token) => {
+        return checkToken(token);
+      })
+      .then((user) => {
+        setCurrentUser(user.data);
+        setIsLoggedIn(true);
+        handleModalClose();
+      });
   };
-
-  // const handleLogin = ({ email, password }) => {
-  //   const makeRequest = () => {
-  //     return signin({ email, password })
-  //       .then((res) => {
-  //         setToken(res);
-  //         setUserToken(res.token);
-  //         return res.token;
-  //       })
-  //       .then((token) => {
-  //         return checkToken(token);
-  //       })
-  //       .then((user) => {
-  //         setCurrentUser(user);
-  //         setIsLoggedIn(true);
-  //       });
-  //   };
-  //   handleSubmit(makeRequest);
-  // };
 
   const handleLogout = () => {
     removeToken();
@@ -140,59 +134,76 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setSavedCards(data);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="app">
-        <div className="app__content">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Header
-                    isLoggedIn={isLoggedIn}
-                    handleLoginClick={handleLoginClick}
-                    handleLogoutClick={handleLogout}
-                    currentUser={currentUser}
-                    handleSearchSubmit={handleSearchSubmit}
-                  />
-                  <Main isLoggedIn={isLoggedIn} isLoading={isLoading} />
-                  <About />
-                </>
-              }
-            />
-            <Route
-              path="/saved-news"
-              element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <SavedNewsNavigation
-                    isLoggedIn={isLoggedIn}
-                    currentUser={currentUser}
-                    handleLogoutClick={handleLogout}
-                  />
-                  <SavedNews />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-          <Footer />
+      <SavedNewsArticlesContext.Provider value={savedCards}>
+        <div className="app">
+          <div className="app__content">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Header
+                      isLoggedIn={isLoggedIn}
+                      handleLoginClick={handleLoginClick}
+                      handleLogoutClick={handleLogout}
+                      currentUser={currentUser}
+                      handleSearchSubmit={handleSearchSubmit}
+                      keyword={keyword}
+                      setKeyword={setKeyword}
+                    />
+                    <Main
+                      isLoggedIn={isLoggedIn}
+                      isLoading={isLoading}
+                      newsCards={newsCards}
+                      noResults={noResults}
+                    />
+                    <About />
+                  </>
+                }
+              />
+              <Route
+                path="/saved-news"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <SavedNewsNavigation
+                      isLoggedIn={isLoggedIn}
+                      currentUser={currentUser}
+                      handleLogoutClick={handleLogout}
+                    />
+                    <SavedNews savedKeywords={savedKeywords} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+            <Footer />
+          </div>
+          <RegisterModal
+            onClose={handleModalClose}
+            handleRegistration={handleRegistration}
+            activeModal={activeModal}
+            setActiveModal={setActiveModal}
+            isLoading={isLoading}
+          />
+          <LoginModal
+            onClose={handleModalClose}
+            handleLogin={handleLogin}
+            activeModal={activeModal}
+            setActiveModal={setActiveModal}
+            isLoading={isLoading}
+          />
         </div>
-        <RegisterModal
-          onClose={handleModalClose}
-          handleRegistration={handleRegistration}
-          activeModal={activeModal}
-          setActiveModal={setActiveModal}
-          isLoading={isLoading}
-        />
-        <LoginModal
-          onClose={handleModalClose}
-          handleLogin={handleLogin}
-          activeModal={activeModal}
-          setActiveModal={setActiveModal}
-          isLoading={isLoading}
-        />
-      </div>
+      </SavedNewsArticlesContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

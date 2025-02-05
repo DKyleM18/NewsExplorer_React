@@ -1,5 +1,3 @@
-import { request } from "./api";
-
 const baseUrl = "https://localhost:3001";
 
 function signup({ name, email, password }) {
@@ -29,14 +27,18 @@ function signin({ email, password }) {
   });
 }
 
-function checkToken(token) {
-  return request(`${baseUrl}/users/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+export const authorize = (email, password) => {
+  return new Promise((resolve, reject) => {
+    resolve({ token: "a fake token" });
   });
-}
+};
 
-export { signup, signin, checkToken };
+export const checkToken = (token) => {
+  return new Promise((resolve, reject) => {
+    resolve({
+      data: { name: "Asdf", email: "asdf@mail.com", _id: "asdf-id" },
+    });
+  });
+};
+
+export { signup, signin };

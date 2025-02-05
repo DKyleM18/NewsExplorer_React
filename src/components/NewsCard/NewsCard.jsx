@@ -1,25 +1,29 @@
 import "./NewsCard.css";
 
 export default function NewsCard({
-  url,
-  name,
+  imageUrl,
+  title,
   date,
   description,
-  author,
-  children,
+  source,
+  isLoggedIn,
 }) {
   return (
-    <div className="news-card">
+    <li className="news-card">
+      <button
+        type="button"
+        className={`news-card__save-button ${isLoggedIn ? "isLoggedIn" : ""}`}
+      ></button>
+      <div className="news-card__save-confirm">Sign in to save articles</div>
       <div className="news-card__image-container">
-        <img src={url} alt={name} className="news-card__image" />
+        <img className="news-card__image" src={imageUrl} alt={title} />
       </div>
-      {children && <div className="news-card__details">{children}</div>}
       <div className="news-card__info">
-        <div className="news-card__date">{date}</div>
-        <h3 className="news-card__title">{name}</h3>
+        <p className="news-card__date">{date}</p>
+        <h2 className="news-card__title">{title}</h2>
         <p className="news-card__description">{description}</p>
-        <footer className="news-card__footer">{author}</footer>
+        <p className="news-card__source">{source}</p>
       </div>
-    </div>
+    </li>
   );
 }

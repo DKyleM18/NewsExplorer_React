@@ -1,0 +1,108 @@
+.news-card {
+  max-height: 576px;
+  width: 400px;
+  position: relative;
+  border-radius: 16px;
+  gap: 16px;
+  background-color: #fff;
+}
+
+.news-card__image-container {
+  height: 272px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+.news-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-card__save-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  background-image: url(../../assets/bookmark-normal.svg);
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.news-card__save-button:hover {
+  background-image: url(../../assets/bookmark-hover.svg);
+}
+
+.news-card__save-confirm {
+  display: none;
+  position: absolute;
+  top: 24px;
+  right: 69px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  border-radius: 10px;
+  padding: 13px 26px;
+}
+
+.news-card__save-button:not(.isLoggedIn):hover + .news-card__save-confirm {
+  display: block;
+}
+
+.news-card__info {
+  padding: 20px 24px 24px;
+}
+
+.news-card__date {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(182, 188, 191, 1);
+}
+
+.news-card__title {
+  margin: 12px 0 16px;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  max-width: 352px;
+  height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(26, 27, 34, 1);
+}
+
+.news-card__description {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 352px;
+  height: 88px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(26, 27, 34, 1);
+}
+
+.news-card__source {
+  margin: 18px 0 0;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  color: rgba(182, 188, 191, 1);
+}

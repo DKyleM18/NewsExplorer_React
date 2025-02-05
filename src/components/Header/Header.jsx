@@ -10,6 +10,8 @@ export default function Header({
   handleSearchSubmit,
   isLoggedIn,
   currentUser,
+  keyword,
+  setKeyword,
 }) {
   return (
     <header
@@ -31,7 +33,11 @@ export default function Header({
           </p>
         </div>
         <div className="header__search-form">
-          <SearchForm handleSearchSubmit={handleSearchSubmit} />
+          <SearchForm
+            handleSearchSubmit={handleSearchSubmit}
+            keyword={keyword}
+            setKeyword={setKeyword}
+          />
         </div>
       </div>
     </header>
