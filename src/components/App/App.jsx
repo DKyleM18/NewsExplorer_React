@@ -180,7 +180,10 @@ function App() {
                       currentUser={currentUser}
                       handleLogoutClick={handleLogout}
                     />
-                    <SavedNews savedKeywords={savedKeywords} />
+                    <SavedNews
+                      savedKeywords={savedKeywords}
+                      isLoggedIn={isLoggedIn}
+                    />
                   </ProtectedRoute>
                 }
               />

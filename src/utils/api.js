@@ -3,19 +3,62 @@ export function getItems() {
     resolve([
       {
         _id: "65f7368dfb74bd6a92114c85",
-        title: "A News Article",
-        imageUrl: "https://via.placeholder.com/150",
-        date: "2024-12-15",
-        description: "A news article description",
+        title: "A News Article, A News Article, A News Article",
+        imageUrl:
+          "https://gizmodo.com/app/uploads/2025/02/DIY-3D-Printer-Tattoo-Machine-EmilytheEngineer-1.jpg",
+        date: "December 16, 2024",
+        description:
+          "A news article description, A news article description, A news article description, A news article description, A news article description, A news article description",
         source: "The New York Times",
+        keyword: "keyword1",
       },
       {
         _id: "65f7368dfb74bd6a92114c86",
-        title: "Another News Article",
-        imageUrl: "https://via.placeholder.com/151",
-        date: "2024-12-16",
-        description: "Another news article description",
+        title:
+          "Another News Article, Another News Article, Another News Article",
+        imageUrl:
+          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
+        date: "December 17, 2024",
+        description:
+          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
         source: "The Wall Street Journal",
+        keyword: "keyword2",
+      },
+      {
+        _id: "65f7368dfb74bd6a92114c86",
+        title:
+          "Another News Article, Another News Article, Another News Article",
+        imageUrl:
+          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
+        date: "December 17, 2024",
+        description:
+          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
+        source: "The Wall Street Journal",
+        keyword: "keyword3",
+      },
+      {
+        _id: "65f7368dfb74bd6a92114c86",
+        title:
+          "Another News Article, Another News Article, Another News Article",
+        imageUrl:
+          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
+        date: "December 17, 2024",
+        description:
+          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
+        source: "The Wall Street Journal",
+        keyword: "keyword4",
+      },
+      {
+        _id: "65f7368dfb74bd6a92114c86",
+        title:
+          "Another News Article, Another News Article, Another News Article",
+        imageUrl:
+          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
+        date: "December 17, 2024",
+        description:
+          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
+        source: "The Wall Street Journal",
+        keyword: "keyword5",
       },
     ]);
   });

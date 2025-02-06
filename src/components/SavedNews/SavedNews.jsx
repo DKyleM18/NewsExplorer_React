@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
 import SavedNewsCardList from "../SavedNewsCardList/SavedNewsCardList";
 
-export default function SavedNews({ savedKeywords }) {
+export default function SavedNews({ savedKeywords, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
   const savedNewsArticles = useContext(SavedNewsArticlesContext);
   return (
@@ -22,7 +22,7 @@ export default function SavedNews({ savedKeywords }) {
           </span>
         </p>
       </div>
-      {/* <SavedNewsCardList /> */}
+      <SavedNewsCardList isLoggedIn={isLoggedIn} />
     </section>
   );
 }
