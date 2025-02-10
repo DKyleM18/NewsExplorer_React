@@ -1,8 +1,6 @@
 .saved-news-cards {
   margin: 0;
-  /* display: grid; */
   background-color: rgba(245, 246, 247, 1);
-  /* padding: 62px 106px 62px 102px; */
 }
 
 .saved-news-cards__list {
@@ -11,6 +9,13 @@
   justify-content: flex-start;
   gap: 16px;
   margin: 0;
-  padding: 0 0 0 102px;
+  padding: 62px 0 62px 102px;
   list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+  .saved-news-cards__list {
+    padding: 32px 0 32px 40px;
+    gap: 8px;
+  }
 }

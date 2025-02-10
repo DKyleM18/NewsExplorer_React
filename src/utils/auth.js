@@ -1,17 +1,21 @@
+import { request } from "./newsApi";
 const baseUrl = "https://localhost:3001";
 
 function signup({ name, email, password }) {
-  return request(`${baseUrl}/signup`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      email,
-      password,
-    }),
+  return new Promise((resolve, reject) => {
+    resolve({ user: "a fake user" });
   });
+  // request(`${baseUrl}/signup`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     name,
+  //     email,
+  //     password,
+  //   }),
+  // });
 }
 
 function signin({ email, password }) {

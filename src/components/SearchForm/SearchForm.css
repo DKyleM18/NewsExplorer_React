@@ -25,9 +25,54 @@
   height: 64px;
   width: 168px;
   border: none;
-  background-color: #2f71e5;
+  background-color: rgba(47, 113, 229, 1);
   color: white;
   font-size: 16px;
   cursor: pointer;
   border-radius: 100px;
+}
+
+.search-form__button:hover {
+  background: rgba(52, 126, 255, 1);
+}
+
+.search-form__button:active {
+  background: rgba(42, 101, 204, 1);
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    margin-top: 48px;
+    max-width: 452px;
+  }
+
+  .search-form__input {
+    max-width: 404px;
+    height: 56px;
+  }
+
+  .search-form__button {
+    right: 0;
+    height: 56px;
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .search-form {
+    margin-top: 160px;
+    max-width: 288px;
+    justify-content: start;
+  }
+
+  .search-form__input {
+    width: 100%;
+  }
+
+  .search-form__button {
+    width: 288px;
+    top: 72px;
+    left: 0;
+    padding: 0;
+  }
 }

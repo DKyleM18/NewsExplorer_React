@@ -9,14 +9,35 @@ export default function RegisterModal({
   setActiveModal,
   isLoading,
 }) {
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setEmailError("Invalid email address");
+    } else {
+      setEmailError("");
+    }
+  };
+
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    validateEmail(e.target.value);
+  };
+
+  const validatePassword = (password) => {
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+    } else {
+      setPasswordError("");
+    }
   };
 
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    validatePassword(e.target.value);
   };
 
   const [username, setUsername] = useState("");
@@ -32,7 +53,8 @@ export default function RegisterModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration({ email, password, username });
+    setActiveModal("confirm");
+    // handleRegistration({ email, password, username });
   };
 
   const handleSigninClick = () => {
@@ -47,6 +69,10 @@ export default function RegisterModal({
 
   return (
     <ModalWithForm
+      email={email}
+      password={password}
+      emailError={emailError}
+      passwordError={passwordError}
       activeModal={activeModal}
       buttonText={isLoading ? "Signing up..." : "Sign up"}
       title="Sign Up"
@@ -68,6 +94,7 @@ export default function RegisterModal({
           required
         />
       </label>
+      <span className="modal__error">{emailError}</span>
       <label htmlFor="registerPassword" className="modal__label">
         Password{" "}
         <input
@@ -80,6 +107,7 @@ export default function RegisterModal({
           required
         />
       </label>
+      <span className="modal__error">{passwordError}</span>
       <label htmlFor="registerUsername" className="modal__label">
         Username{" "}
         <input

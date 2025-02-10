@@ -10,9 +10,10 @@ import SavedNewsNavigation from "../SavedNewsNavigation/SavedNewsNavigation";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
-import { checkToken, authorize } from "../../utils/auth";
+import { checkToken, authorize, signup } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
 import { getItems } from "../../utils/api";
 import { getNewsItems } from "../../utils/newsApi";
@@ -39,11 +40,7 @@ function App() {
   };
 
   function handleSubmit(request) {
-    setIsLoading(true);
-    request()
-      .then(handleModalClose)
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+    request().then(handleModalClose).catch(console.error);
   }
 
   const handleSearchSubmit = (keyword) => {
@@ -92,12 +89,7 @@ function App() {
   };
 
   const handleRegistration = ({ name, email, password }) => {
-    const makeRequest = () => {
-      return signup({ name, email, password }).then(() =>
-        handleLogin({ email, password })
-      );
-    };
-    handleSubmit(makeRequest);
+    return signup({ name, email, password });
   };
 
   useEffect(() => {
@@ -204,6 +196,11 @@ function App() {
             activeModal={activeModal}
             setActiveModal={setActiveModal}
             isLoading={isLoading}
+          />
+          <ConfirmModal
+            onClose={handleModalClose}
+            activeModal={activeModal}
+            setActiveModal={setActiveModal}
           />
         </div>
       </SavedNewsArticlesContext.Provider>

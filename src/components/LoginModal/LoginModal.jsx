@@ -9,14 +9,33 @@ export default function LoginModal({
   setActiveModal,
   isLoading,
 }) {
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setEmailError("Invalid email address");
+    } else {
+      setEmailError("");
+    }
+  };
+  const [emailError, setEmailError] = useState("");
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
+    validateEmail(e.target.value);
     setEmail(e.target.value);
   };
 
+  const validatePassword = (password) => {
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+    } else {
+      setPasswordError("");
+    }
+  };
+  const [passwordError, setPasswordError] = useState("");
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    validatePassword(e.target.value);
   };
 
   const resetInputs = () => {
@@ -41,6 +60,10 @@ export default function LoginModal({
 
   return (
     <ModalWithForm
+      email={email}
+      password={password}
+      emailError={emailError}
+      passwordError={passwordError}
       activeModal={activeModal}
       buttonText={isLoading ? "Signing In..." : "Sign In"}
       title="Sign in"
@@ -62,6 +85,7 @@ export default function LoginModal({
           required
         />
       </label>
+      <span className="modal__error">{emailError}</span>
       <label htmlFor="loginPassword" className="modal__label">
         Password{" "}
         <input
@@ -74,6 +98,7 @@ export default function LoginModal({
           required
         />
       </label>
+      <span className="modal__error">{passwordError}</span>
     </ModalWithForm>
   );
 }

@@ -1,5 +1,5 @@
 import "./SavedNewsCardList.css";
-import NewsCard from "../NewsCard/NewsCard";
+import SavedNewsCard from "../SavedNewsCard/SavedNewsCard";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
@@ -11,13 +11,13 @@ export default function SavedNewsCardList({ isLoggedIn }) {
     <section className="saved-news-cards">
       <ul className="saved-news-cards__list">
         {savedNewsArticles.map((card) => (
-          <NewsCard
-            isLoggedIn={isLoggedIn}
+          <SavedNewsCard
             imageUrl={card.imageUrl}
             title={card.title}
             date={card.date}
             description={card.description}
             source={card.source}
+            keyword={card.keyword}
           />
         ))}
       </ul>

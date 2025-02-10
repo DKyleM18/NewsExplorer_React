@@ -74,3 +74,25 @@
 .sn_navigation__link.active .sn_navigation__button_saved-news {
   border-bottom: 3px solid #000;
 }
+
+@media screen and (max-width: 768px) {
+  .sn_navigation {
+    padding: 0 40px;
+    height: 66px;
+  }
+
+  .sn_navigation__button_home {
+    margin-right: 16px;
+  }
+
+  .sn_navigation__button_saved-news {
+    height: 68px;
+    width: 160px;
+    margin-right: 16px;
+  }
+
+  .sn_navigation__user-button {
+    height: 40px;
+    width: 100px;
+  }
+}

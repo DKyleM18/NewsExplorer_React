@@ -26,13 +26,37 @@
   padding: 0;
   width: 288px;
   height: 64px;
-  background-color: rgba(232, 232, 232, 1);
   border: none;
   border-radius: 80px;
+  background-color: rgba(255, 255, 255, 1);
   color: rgba(26, 27, 34, 1);
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
   cursor: pointer;
+}
+
+.news-cards__show-more:hover {
+  background-color: rgba(232, 232, 232, 1);
+}
+
+@media screen and (max-width: 768px) {
+  .news-cards__title {
+    margin: 40px auto 32px 40px;
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .news-cards__list {
+    gap: 8px;
+    padding-left: 40px;
+    justify-content: flex-start;
+  }
+
+  .news-cards__show-more {
+    width: 240px;
+    height: 56px;
+    margin: 32px auto 40px;
+  }
 }

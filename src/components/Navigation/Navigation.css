@@ -84,3 +84,37 @@
 .navigation__link.active .navigation__button_home {
   border-bottom: 3px solid #fff;
 }
+
+@media screen and (max-width: 768px) {
+  .navigation {
+    padding: 0 40px;
+    height: 66px;
+  }
+
+  .navigation__buttons {
+    font-size: 16px;
+  }
+
+  .navigation__login-button {
+    width: 152px;
+    height: 40px;
+  }
+
+  .navigation__button_home {
+    height: 66px;
+    width: 60px;
+    margin-right: 16px;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .navigation {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .navigation__icon {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

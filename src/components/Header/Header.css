@@ -37,3 +37,50 @@
   font-weight: 400;
   margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    min-height: 400px;
+  }
+
+  .header__wrapper {
+    align-items: start;
+  }
+
+  .header__content {
+    padding-left: 160px;
+    align-items: start;
+  }
+
+  .header__title {
+    font-size: 36px;
+    line-height: 40px;
+    max-width: 385px;
+    margin: 38px 0 16px;
+  }
+
+  .header__caption {
+    font-size: 18px;
+    line-height: 24px;
+    max-width: 452px;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .header {
+    min-height: 536px;
+    max-width: 288px;
+  }
+
+  .header__content {
+    padding-left: 16px;
+  }
+
+  .header__title {
+    margin-top: 30px;
+  }
+
+  .header__caption {
+    max-width: 288px;
+  }
+}

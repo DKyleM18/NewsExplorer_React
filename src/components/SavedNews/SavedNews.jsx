@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
 import SavedNewsCardList from "../SavedNewsCardList/SavedNewsCardList";
 
-export default function SavedNews({ savedKeywords, isLoggedIn }) {
+export default function SavedNews({ isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
   const savedNewsArticles = useContext(SavedNewsArticlesContext);
   return (
@@ -18,7 +18,14 @@ export default function SavedNews({ savedKeywords, isLoggedIn }) {
         <p className="saved-news__keywords">
           By keywords:{" "}
           <span style={{ fontWeight: "bold" }}>
-            {savedKeywords.join(", ") || "None"}
+            {savedNewsArticles.length > 0 ? (
+              <>
+                {savedNewsArticles[0].keyword}, {savedNewsArticles[1].keyword},{" "}
+                and {savedNewsArticles.length - 2} other
+              </>
+            ) : (
+              "None"
+            )}
           </span>
         </p>
       </div>
