@@ -124,7 +124,7 @@
   color: rgba(182, 188, 191, 1);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
   .saved-news-card {
     width: 224px;
   }

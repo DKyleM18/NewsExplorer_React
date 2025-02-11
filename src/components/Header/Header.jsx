@@ -1,7 +1,6 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
-import headerBackground from "../../assets/header-background.png";
 import "./Header.css";
 
 export default function Header({
@@ -14,10 +13,7 @@ export default function Header({
   setKeyword,
 }) {
   return (
-    <header
-      className="header"
-      style={{ backgroundImage: `url(${headerBackground})` }}
-    >
+    <header className="header">
       <Navigation
         handleLoginClick={handleLoginClick}
         handleLogoutClick={handleLogoutClick}

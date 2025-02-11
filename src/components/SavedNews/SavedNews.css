@@ -33,7 +33,7 @@
   color: rgba(26, 27, 34, 1);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
   .saved-news__preheader {
     font-size: 14px;
   }

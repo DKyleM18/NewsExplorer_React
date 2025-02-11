@@ -41,22 +41,31 @@
   background-color: rgba(232, 232, 232, 1);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
   .news-cards__title {
-    margin: 40px auto 32px 40px;
+    margin: 40px 40px 32px;
     font-size: 30px;
     line-height: 34px;
   }
 
   .news-cards__list {
+    margin-left: 14px;
     gap: 8px;
-    padding-left: 40px;
-    justify-content: flex-start;
   }
 
   .news-cards__show-more {
     width: 240px;
     height: 56px;
     margin: 32px auto 40px;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .news-cards__list {
+    margin: 0;
+  }
+
+  .news-cards__title {
+    margin: 32px 16px 58px;
   }
 }

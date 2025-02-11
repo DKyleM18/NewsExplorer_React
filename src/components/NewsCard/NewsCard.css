@@ -106,13 +106,13 @@
   color: rgba(182, 188, 191, 1);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
   .news-card {
     width: 224px;
   }
 
   .news-card__image-container {
-    height: 224px;
+    height: 150px;
   }
 
   .news-card__save-button {
@@ -134,5 +134,20 @@
 
   .news-card__source {
     margin-top: 12px;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .news-card {
+    width: 288px;
+    height: 440px;
+  }
+
+  .news-card__image-container {
+    height: 196px;
+  }
+
+  .news-card__title {
+    height: 48px;
   }
 }

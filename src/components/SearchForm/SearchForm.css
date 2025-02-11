@@ -40,7 +40,7 @@
   background: rgba(42, 101, 204, 1);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
   .search-form {
     margin-top: 48px;
     max-width: 452px;
@@ -58,19 +58,18 @@
   }
 }
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 595px) {
   .search-form {
     margin-top: 160px;
     max-width: 288px;
-    justify-content: start;
   }
 
   .search-form__input {
-    width: 100%;
+    max-width: 239px;
   }
 
   .search-form__button {
-    width: 288px;
+    width: 287px;
     top: 72px;
     left: 0;
     padding: 0;

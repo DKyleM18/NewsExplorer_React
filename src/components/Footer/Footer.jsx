@@ -8,18 +8,22 @@ export default function Footer() {
         &copy; 2024 Supersite, Powered by News API
       </p>
       <div className="footer__links">
-        <Link to="/" className="footer__link">
-          <p className="footer__link_home">Home</p>
-        </Link>
-        <a href="https://tripleten.com/" className="footer__link">
-          TripleTen
-        </a>
-        <a href="https://github.com" className="footer__link">
-          <img src="/src/assets/github-icon.png" alt="GitHub icon" />
-        </a>
-        <a href="https://www.facebook.com" className="footer__link">
-          <img src="/src/assets/facebook-icon.png" alt="Facebook icon" />
-        </a>
+        <div className="footer__links-text">
+          <Link to="/" className="footer__link">
+            <p className="footer__link_home">Home</p>
+          </Link>
+          <a href="https://tripleten.com/" className="footer__link">
+            TripleTen
+          </a>
+        </div>
+        <div className="footer__links-symbol">
+          <a href="https://github.com" className="footer__link">
+            <img src="/src/assets/github-icon.png" alt="GitHub icon" />
+          </a>
+          <a href="https://www.facebook.com" className="footer__link">
+            <img src="/src/assets/facebook-icon.png" alt="Facebook icon" />
+          </a>
+        </div>
       </div>
     </footer>
   );
