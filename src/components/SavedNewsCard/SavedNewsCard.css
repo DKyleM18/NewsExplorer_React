@@ -157,4 +157,24 @@
     top: 8px;
     left: 8px;
   }
+
+  .saved-news-card__delete-confirm {
+    top: 55px;
+    right: 8px;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .saved-news-card {
+    width: 288px;
+    height: 440px;
+  }
+
+  .saved-news-card__image-container {
+    height: 196px;
+  }
+
+  .saved-news-card__title {
+    height: 48px;
+  }
 }

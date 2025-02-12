@@ -46,6 +46,20 @@
     font-size: 30px;
     line-height: 34px;
     margin: 16px 0;
-    width: 336px;
+    max-width: 336px;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .saved-news__preheader {
+    font-size: 12px;
+  }
+
+  .saved-news__header_container {
+    padding: 8px 16px 32px;
+  }
+
+  .saved-news__title {
+    margin-bottom: 50px;
   }
 }

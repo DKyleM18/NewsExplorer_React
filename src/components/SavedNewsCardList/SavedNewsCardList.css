@@ -6,16 +6,24 @@
 .saved-news-cards__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 16px;
   margin: 0;
-  padding: 62px 0 62px 102px;
+  padding: 62px 30px;
   list-style: none;
 }
 
 @media screen and (max-width: 780px) {
   .saved-news-cards__list {
-    padding: 32px 0 32px 40px;
+    margin-left: 14px;
+    padding: 32px 0;
     gap: 8px;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .saved-news-cards__list {
+    margin: 0;
+    padding: 24px 0 12px;
   }
 }
