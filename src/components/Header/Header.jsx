@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
+import MobileNavigation from "../MobileNavigation/MobileNavigation";
 import "./Header.css";
 
 export default function Header({
@@ -11,15 +12,25 @@ export default function Header({
   currentUser,
   keyword,
   setKeyword,
+  isMobile,
 }) {
   return (
     <header className="header">
-      <Navigation
-        handleLoginClick={handleLoginClick}
-        handleLogoutClick={handleLogoutClick}
-        isLoggedIn={isLoggedIn}
-        currentUser={currentUser}
-      />
+      {isMobile ? (
+        <MobileNavigation
+          handleLoginClick={handleLoginClick}
+          handleLogoutClick={handleLogoutClick}
+          isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
+        />
+      ) : (
+        <Navigation
+          handleLoginClick={handleLoginClick}
+          handleLogoutClick={handleLogoutClick}
+          isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
+        />
+      )}
       <div className="header__content">
         <div className="header__wrapper">
           <h1 className="header__title">What's going on in the world?</h1>

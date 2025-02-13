@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
@@ -18,6 +19,7 @@ import { setToken, getToken, removeToken } from "../../utils/token";
 import { getItems } from "../../utils/api";
 import { getNewsItems } from "../../utils/newsApi";
 import "./App.css";
+import MobileNavigation from "../MobileNavigation/MobileNavigation";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,6 +32,8 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [savedKeywords, setSavedKeywords] = useState([]);
   const [noResults, setNoResults] = useState(false);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 595px)" });
 
   const handleLoginClick = () => {
     setActiveModal("login");
@@ -152,6 +156,7 @@ function App() {
                       handleSearchSubmit={handleSearchSubmit}
                       keyword={keyword}
                       setKeyword={setKeyword}
+                      isMobile={isMobile}
                     />
                     <Main
                       isLoggedIn={isLoggedIn}
@@ -167,11 +172,20 @@ function App() {
                 path="/saved-news"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SavedNewsNavigation
-                      isLoggedIn={isLoggedIn}
-                      currentUser={currentUser}
-                      handleLogoutClick={handleLogout}
-                    />
+                    {isMobile ? (
+                      <MobileNavigation
+                        isLoggedIn={isLoggedIn}
+                        currentUser={currentUser}
+                        handleLogoutClick={handleLogout}
+                        handleLoginClick={handleLoginClick}
+                      />
+                    ) : (
+                      <SavedNewsNavigation
+                        isLoggedIn={isLoggedIn}
+                        currentUser={currentUser}
+                        handleLogoutClick={handleLogout}
+                      />
+                    )}
                     <SavedNews
                       savedKeywords={savedKeywords}
                       isLoggedIn={isLoggedIn}
