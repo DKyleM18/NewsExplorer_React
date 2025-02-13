@@ -1,17 +1,16 @@
 import "./SavedNewsCardList.css";
 import SavedNewsCard from "../SavedNewsCard/SavedNewsCard";
 import { useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
 
-export default function SavedNewsCardList({ isLoggedIn }) {
-  const currentUser = useContext(CurrentUserContext);
+export default function SavedNewsCardList() {
   const savedNewsArticles = useContext(SavedNewsArticlesContext);
   return (
     <section className="saved-news-cards">
       <ul className="saved-news-cards__list">
         {savedNewsArticles.map((card) => (
           <SavedNewsCard
+            key={card._id}
             imageUrl={card.imageUrl}
             title={card.title}
             date={card.date}

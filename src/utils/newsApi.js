@@ -1,9 +1,10 @@
 const apiKey = "34f078d982d34b3e85336be8d6660dac";
 
 export const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
+  // process.env.NODE_ENV === "production"
+  //   ? "https://nomoreparties.co/news/v2/everything"
+  //   :
+  "https://newsapi.org/v2/everything";
 
 export function checkResponse(res) {
   if (res.ok) {

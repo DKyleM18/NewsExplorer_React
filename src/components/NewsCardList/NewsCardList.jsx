@@ -12,6 +12,7 @@ export default function NewsCardList({ newsCards, isLoggedIn }) {
       <ul className="news-cards__list">
         {newsCards.slice(0, shownCards).map((card) => (
           <NewsCard
+            key={card._id}
             isLoggedIn={isLoggedIn}
             imageUrl={card.urlToImage}
             title={card.title}

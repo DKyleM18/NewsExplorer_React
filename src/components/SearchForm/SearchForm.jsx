@@ -1,5 +1,4 @@
 import "./SearchForm.css";
-import { useState } from "react";
 
 export default function SearchForm({
   handleSearchSubmit,

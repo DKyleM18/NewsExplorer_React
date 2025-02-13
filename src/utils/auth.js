@@ -1,8 +1,8 @@
 import { request } from "./newsApi";
 const baseUrl = "https://localhost:3001";
 
-function signup({ name, email, password }) {
-  return new Promise((resolve, reject) => {
+function signup() {
+  return new Promise((resolve) => {
     resolve({ user: "a fake user" });
   });
   // request(`${baseUrl}/signup`, {
@@ -31,14 +31,14 @@ function signin({ email, password }) {
   });
 }
 
-export const authorize = (email, password) => {
-  return new Promise((resolve, reject) => {
+export const authorize = () => {
+  return new Promise((resolve) => {
     resolve({ token: "a fake token" });
   });
 };
 
-export const checkToken = (token) => {
-  return new Promise((resolve, reject) => {
+export const checkToken = () => {
+  return new Promise((resolve) => {
     resolve({
       data: { name: "Asdf", email: "asdf@mail.com", _id: "asdf-id" },
     });

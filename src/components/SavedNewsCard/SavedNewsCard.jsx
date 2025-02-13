@@ -1,6 +1,4 @@
 import "./SavedNewsCard.css";
-import { useContext } from "react";
-import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
 
 export default function SavedNewsCard({
   imageUrl,
@@ -10,7 +8,6 @@ export default function SavedNewsCard({
   source,
   keyword,
 }) {
-  const savedNewsArticles = useContext(SavedNewsArticlesContext);
   return (
     <li className="saved-news-card">
       <div className="saved-news-card__keyword">{keyword}</div>

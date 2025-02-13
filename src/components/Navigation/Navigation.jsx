@@ -1,5 +1,4 @@
 import "./Navigation.css";
-import React from "react";
 import { NavLink } from "react-router-dom";
 import logoutIcon from "../../assets/logout.png";
 

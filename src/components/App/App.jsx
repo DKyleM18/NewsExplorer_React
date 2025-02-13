@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import About from "../About/About";
 import SavedNews from "../SavedNews/SavedNews";
-import Navigation from "../Navigation/Navigation";
 import SavedNewsNavigation from "../SavedNewsNavigation/SavedNewsNavigation";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -26,11 +25,17 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [userToken, setUserToken] = useState("");
+  const [
+    // userToken,
+    setUserToken,
+  ] = useState("");
   const [savedCards, setSavedCards] = useState([]);
   const [newsCards, setNewsCards] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [savedKeywords, setSavedKeywords] = useState([]);
+  const [
+    savedKeywords,
+    // setSavedKeywords
+  ] = useState([]);
   const [noResults, setNoResults] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 595px)" });
@@ -43,9 +48,9 @@ function App() {
     setActiveModal("");
   };
 
-  function handleSubmit(request) {
-    request().then(handleModalClose).catch(console.error);
-  }
+  // function handleSubmit(request) {
+  //   request().then(handleModalClose).catch(console.error);
+  // }
 
   const handleSearchSubmit = (keyword) => {
     setKeyword(keyword);
