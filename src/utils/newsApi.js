@@ -1,10 +1,8 @@
 const apiKey = "34f078d982d34b3e85336be8d6660dac";
 
-export const baseUrl =
-  // process.env.NODE_ENV === "production"
-  //   ? "https://nomoreparties.co/news/v2/everything"
-  //   :
-  "https://newsapi.org/v2/everything";
+export const baseUrl = import.meta.env.PROD
+  ? import.meta.env.VITE_API_BASE_URL_PROD
+  : import.meta.env.VITE_API_BASE_URL_DEV;
 
 export function checkResponse(res) {
   if (res.ok) {
