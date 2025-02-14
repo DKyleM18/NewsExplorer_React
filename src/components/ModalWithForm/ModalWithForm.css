@@ -97,7 +97,7 @@
   background-color: rgba(47, 113, 229, 1);
   color: #fff;
   border-radius: 100px;
-  width: 360px;
+  width: 100%;
   height: 64px;
   border: none;
   font-family: "Roboto", sans-serif;
@@ -151,5 +151,9 @@
     right: 10px;
     height: 24px;
     width: 24px;
+  }
+
+  .modal__content {
+    padding: 16px 16px 20px;
   }
 }

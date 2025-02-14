@@ -11,6 +11,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import MobileNavigation from "../MobileNavigation/MobileNavigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
 import { checkToken, authorize, signup } from "../../utils/auth";
@@ -18,24 +19,15 @@ import { setToken, getToken, removeToken } from "../../utils/token";
 import { getItems } from "../../utils/api";
 import { getNewsItems } from "../../utils/newsApi";
 import "./App.css";
-import MobileNavigation from "../MobileNavigation/MobileNavigation";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [
-    // userToken,
-    setUserToken,
-  ] = useState("");
   const [savedCards, setSavedCards] = useState([]);
   const [newsCards, setNewsCards] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [
-    savedKeywords,
-    // setSavedKeywords
-  ] = useState([]);
   const [noResults, setNoResults] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 595px)" });
@@ -78,7 +70,6 @@ function App() {
     return authorize({ email, password })
       .then((res) => {
         setToken(res.token);
-        setUserToken(res.token);
         return res.token;
       })
       .then((token) => {
@@ -128,7 +119,6 @@ function App() {
       checkToken(token)
         .then((res) => {
           setCurrentUser(res);
-          setUserToken(token);
           setIsLoggedIn(true);
         })
         .catch(console.error);
@@ -191,10 +181,7 @@ function App() {
                         handleLogoutClick={handleLogout}
                       />
                     )}
-                    <SavedNews
-                      savedKeywords={savedKeywords}
-                      isLoggedIn={isLoggedIn}
-                    />
+                    <SavedNews isLoggedIn={isLoggedIn} />
                   </ProtectedRoute>
                 }
               />

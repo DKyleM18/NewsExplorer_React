@@ -3,6 +3,12 @@
   padding: 80px 104px;
 }
 
+.about__avatar-image {
+  width: 464px;
+  height: 464px;
+  border-radius: 50%;
+}
+
 .about__info {
   display: flex;
   flex-direction: column;
