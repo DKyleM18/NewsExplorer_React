@@ -1,0 +1,121 @@
+.mobile-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 56px;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.5);
+}
+
+.mobile-navigation__dropdown-open {
+  background-color: rgba(26, 27, 34, 1);
+}
+
+.mobile-navigation__link {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.mobile-navigation__menu-button {
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../../assets/mobile-menu.svg");
+}
+
+.sn-mobile-navigation__menu-button {
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../../assets/sn-mobile-menu.svg");
+}
+
+.mobile-navigation__menu-close-button {
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../../assets/mobile-close.svg");
+}
+
+.mobile-navigation__icon {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+}
+
+.sn-mobile-navigation__icon {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}
+
+.mobile-navigation__dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(26, 27, 34, 1);
+  border-top: 1px solid rgba(196, 196, 196, 0.5);
+  padding: 16px 0 24px;
+}
+
+.mobile-navigation__button_home {
+  padding: 0 0 0 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 56px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+}
+.mobile-navigation__button_saved-news {
+  padding: 0 0 0 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 56px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+}
+
+.mobile-navigation__user-button {
+  margin: 22px 0 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  color: #fff;
+  min-width: 288px;
+  height: 56px;
+  border: solid 2px #fff;
+  border-radius: 100px;
+}
+
+.mobile-navigation__login-button {
+  margin: 22px 0 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  color: #fff;
+  width: 288px;
+  height: 56px;
+  border: solid 2px #fff;
+  border-radius: 100px;
+}
