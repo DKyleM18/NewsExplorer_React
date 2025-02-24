@@ -24,7 +24,7 @@ export default function MobileNavigation({
         isDropdownOpen ? "mobile-navigation__dropdown-open" : ""
       }`}
     >
-      <NavLink to="/" className="mobile-navigation__link">
+      <NavLink to="/news" className="mobile-navigation__link">
         <div
           className={
             isDropdownOpen
@@ -50,12 +50,15 @@ export default function MobileNavigation({
       ></button>
       {isDropdownOpen && (
         <div className="mobile-navigation__dropdown-menu">
-          <NavLink to="/" className="mobile-navigation__link">
+          <NavLink to="/news" className="mobile-navigation__link">
             <button className="mobile-navigation__button_home">Home</button>
           </NavLink>
           {isLoggedIn ? (
             <div className="mobile-navigation__buttons">
-              <NavLink to="/saved-news" className="mobile-navigation__link">
+              <NavLink
+                to="/news/saved-news"
+                className="mobile-navigation__link"
+              >
                 <button className="mobile-navigation__button_saved-news">
                   Saved articles
                 </button>

@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
-import About from "../About/About";
+// import About from "../About/About";
 import SavedNews from "../SavedNews/SavedNews";
 import SavedNewsNavigation from "../SavedNewsNavigation/SavedNewsNavigation";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -140,7 +140,7 @@ function App() {
           <div className="app__content">
             <Routes>
               <Route
-                path="/"
+                path="/news"
                 element={
                   <>
                     <Header
@@ -159,12 +159,12 @@ function App() {
                       newsCards={newsCards}
                       noResults={noResults}
                     />
-                    <About />
+                    {/* <About /> */}
                   </>
                 }
               />
               <Route
-                path="/saved-news"
+                path="/news/saved-news"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     {isMobile ? (
@@ -185,7 +185,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/news/*" element={<Navigate to="/news" replace />} />
             </Routes>
             <Footer />
           </div>

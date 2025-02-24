@@ -10,15 +10,15 @@ export default function Navigation({
 }) {
   return (
     <div className="sn_navigation">
-      <NavLink to="/" className="sn_navigation__link">
+      <NavLink to="/news" className="sn_navigation__link">
         <div className="sn_navigation__icon">NewsExplorer</div>
       </NavLink>
       {isLoggedIn ? (
         <div className="sn_navigation__buttons">
-          <NavLink to="/" className="sn_navigation__link">
+          <NavLink to="/news" className="sn_navigation__link">
             <button className="sn_navigation__button_home">Home</button>
           </NavLink>
-          <NavLink to="/saved-news" className="sn_navigation__link">
+          <NavLink to="/news/saved-news" className="sn_navigation__link">
             <button className="sn_navigation__button_saved-news">
               Saved articles
             </button>
@@ -38,7 +38,7 @@ export default function Navigation({
         </div>
       ) : (
         <div className="sn_navigation__buttons">
-          <NavLink to="/" className="sn_navigation__link">
+          <NavLink to="/news" className="sn_navigation__link">
             <button className="sn_navigation__button_home">Home</button>
           </NavLink>
           <button
