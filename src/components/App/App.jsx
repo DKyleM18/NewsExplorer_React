@@ -4,7 +4,6 @@ import { useMediaQuery } from "react-responsive";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
-// import About from "../About/About";
 import SavedNews from "../SavedNews/SavedNews";
 import SavedNewsNavigation from "../SavedNewsNavigation/SavedNewsNavigation";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -16,7 +15,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
 import { checkToken, authorize, signup } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
-import { getItems } from "../../utils/api";
+import { getSavedCards } from "../../utils/api";
 import { getNewsItems } from "../../utils/newsApi";
 import "./App.css";
 
@@ -126,7 +125,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems()
+    getSavedCards()
       .then((data) => {
         setSavedCards(data);
       })
@@ -159,7 +158,6 @@ function App() {
                       newsCards={newsCards}
                       noResults={noResults}
                     />
-                    {/* <About /> */}
                   </>
                 }
               />

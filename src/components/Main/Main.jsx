@@ -28,25 +28,5 @@ export default function Main({ isLoading, isLoggedIn, newsCards, noResults }) {
       </div>
     );
   }
-  return (
-    <>{content}</>
-    // <main className="main">
-    //   {isLoading ? (
-    //     <div className="main__preloader">
-    //       <div className="main__preloader_circle">
-    //         <Preloader />
-    //       </div>
-    //       <p className="main__preloader_text">Searching for news...</p>
-    //     </div>
-    //   ) : noResults ? (
-    //     <div className="main__no-result">
-    //       <NoResult />
-    //     </div>
-    //   ) : !noResults ? (
-    //     <div className="main__content">
-    //       <NewsCardList isLoggedIn={isLoggedIn} newsCards={newsCards} />
-    //     </div>
-    //   ) : null}
-    // </main>
-  );
+  return <>{content}</>;
 }

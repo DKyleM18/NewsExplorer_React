@@ -1,21 +1,17 @@
-import { request } from "./newsApi";
-const baseUrl = "https://localhost:3001";
+import { baseUrl, request } from "./api";
 
-function signup() {
-  return new Promise((resolve) => {
-    resolve({ user: "a fake user" });
+function signup({ name, email, password }) {
+  return request(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+    }),
   });
-  // request(`${baseUrl}/signup`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     name,
-  //     email,
-  //     password,
-  //   }),
-  // });
 }
 
 function signin({ email, password }) {
@@ -37,12 +33,14 @@ export const authorize = () => {
   });
 };
 
-export const checkToken = () => {
-  return new Promise((resolve) => {
-    resolve({
-      data: { name: "Asdf", email: "asdf@mail.com", _id: "asdf-id" },
-    });
+function checkToken(token) {
+  return request(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
-};
+}
 
-export { signup, signin };
+export { signup, signin, checkToken };

@@ -1,78 +1,53 @@
-export function getItems() {
-  return new Promise((resolve) => {
-    resolve([
-      {
-        _id: "65f7368dfb74bd6a92114c85",
-        title: "A News Article, A News Article, A News Article",
-        imageUrl:
-          "https://gizmodo.com/app/uploads/2025/02/DIY-3D-Printer-Tattoo-Machine-EmilytheEngineer-1.jpg",
-        date: "December 16, 2024",
-        description:
-          "A news article description, A news article description, A news article description, A news article description, A news article description, A news article description",
-        source: "The New York Times",
-        keyword: "keyword1",
-      },
-      {
-        _id: "65f7368dfb74bd6a92114c86",
-        title:
-          "Another News Article, Another News Article, Another News Article",
-        imageUrl:
-          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
-        date: "December 17, 2024",
-        description:
-          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
-        source: "The Wall Street Journal",
-        keyword: "keyword2",
-      },
-      {
-        _id: "65f7368dfb74bd6a92114c87",
-        title:
-          "Another News Article, Another News Article, Another News Article",
-        imageUrl:
-          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
-        date: "December 17, 2024",
-        description:
-          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
-        source: "The Wall Street Journal",
-        keyword: "keyword3",
-      },
-      {
-        _id: "65f7368dfb74bd6a92114c88",
-        title:
-          "Another News Article, Another News Article, Another News Article",
-        imageUrl:
-          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
-        date: "December 17, 2024",
-        description:
-          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
-        source: "The Wall Street Journal",
-        keyword: "keyword4",
-      },
-      {
-        _id: "65f7368dfb74bd6a92114c89",
-        title:
-          "Another News Article, Another News Article, Another News Article",
-        imageUrl:
-          "https://cdn.mos.cms.futurecdn.net/wJGHzXFefLy5hX5MQJyiSh-1200-80.jpg",
-        date: "December 17, 2024",
-        description:
-          "Another news article description, Another news article description, Another news article description, Another news article description, Another news article description, Another news article description",
-        source: "The Wall Street Journal",
-        keyword: "keyword5",
-      },
-    ]);
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.d.kyle.blinklab.com/news"
+    : "http://localhost:3001/news";
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+}
+
+function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
+function getSavedCards() {
+  return request(`${baseUrl}/articles`);
+}
+
+function addSavedCard(
+  { _id, keyword, title, imageUrl, date, description, source },
+  token
+) {
+  return request(`${baseUrl}/articles`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      _id,
+      keyword,
+      title,
+      imageUrl,
+      date,
+      description,
+      source,
+    }),
   });
 }
 
-export function saveArticle(article) {
-  return new Promise((resolve) => {
-    resolve({
-      _id: "65f7368dfb74bd6a92114c89",
-      title: article.title,
-      imageUrl: article.imageUrl,
-      date: article.date,
-      description: article.description,
-      source: article.source,
-    });
+function deleteSavedCard(itemId, token) {
+  return request(`${baseUrl}/articles/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
 }
+
+export { baseUrl, request, getSavedCards, addSavedCard, deleteSavedCard };

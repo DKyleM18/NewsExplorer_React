@@ -1,19 +1,10 @@
+import { request } from "./api";
+
 const apiKey = "34f078d982d34b3e85336be8d6660dac";
 
 export const baseUrl = import.meta.env.PROD
   ? import.meta.env.VITE_API_BASE_URL_PROD
   : import.meta.env.VITE_API_BASE_URL_DEV;
-
-export function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-}
-
-export function request(url, options) {
-  return fetch(url, options).then(checkResponse);
-}
 
 export function getNewsItems(keyword) {
   const currentDate = new Date();
