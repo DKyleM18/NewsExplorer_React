@@ -13,7 +13,7 @@ import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import MobileNavigation from "../MobileNavigation/MobileNavigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
-import { checkToken, authorize, signup } from "../../utils/auth";
+import { checkToken, signin, signup } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
 import { getSavedCards } from "../../utils/api";
 import { getNewsItems } from "../../utils/newsApi";
@@ -28,6 +28,8 @@ function App() {
   const [newsCards, setNewsCards] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [noResults, setNoResults] = useState(false);
+  const [userToken, setUserToken] = useState("");
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 595px)" });
 
@@ -39,9 +41,9 @@ function App() {
     setActiveModal("");
   };
 
-  // function handleSubmit(request) {
-  //   request().then(handleModalClose).catch(console.error);
-  // }
+  function handleSubmit(request) {
+    request().then(handleModalClose).catch(console.error);
+  }
 
   const handleSearchSubmit = (keyword) => {
     setKeyword(keyword);
@@ -66,19 +68,22 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
-    return authorize({ email, password })
-      .then((res) => {
-        setToken(res.token);
-        return res.token;
-      })
-      .then((token) => {
-        return checkToken(token);
-      })
-      .then((user) => {
-        setCurrentUser(user.data);
-        setIsLoggedIn(true);
-        handleModalClose();
-      });
+    const makeRequest = () => {
+      return signin({ email, password })
+        .then((res) => {
+          setToken(res);
+          setUserToken(res.token);
+          return res.token;
+        })
+        .then((token) => {
+          return checkToken(token);
+        })
+        .then((user) => {
+          setCurrentUser(user);
+          setIsLoggedIn(true);
+        });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleLogout = () => {
@@ -87,8 +92,13 @@ function App() {
     setIsLoggedIn(false);
   };
 
-  const handleRegistration = ({ name, email, password }) => {
-    return signup({ name, email, password });
+  const handleRegistration = ({ username, email, password }) => {
+    const makeRequest = () => {
+      return signup({ username, email, password }).then(() =>
+        handleLogin({ email, password })
+      );
+    };
+    handleSubmit(makeRequest);
   };
 
   useEffect(() => {
@@ -113,24 +123,32 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    const token = getToken();
-    if (token) {
-      checkToken(token)
-        .then((res) => {
-          setCurrentUser(res);
-          setIsLoggedIn(true);
-        })
-        .catch(console.error);
-    }
-  }, []);
-
-  useEffect(() => {
     getSavedCards()
       .then((data) => {
         setSavedCards(data);
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    const token = getToken();
+    if (token) {
+      checkToken(token)
+        .then((res) => {
+          setCurrentUser(res);
+          setUserToken(token);
+          setIsLoggedIn(true);
+        })
+        .catch(console.error)
+        .finally(() => setIsAuthChecked(true));
+    } else {
+      setIsAuthChecked(true);
+    }
+  }, []);
+
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

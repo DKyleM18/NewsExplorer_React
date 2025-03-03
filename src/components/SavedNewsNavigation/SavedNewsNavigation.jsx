@@ -28,7 +28,7 @@ export default function Navigation({
             type="button"
             className="sn_navigation__user-button"
           >
-            {currentUser.name || "User"}
+            {currentUser.username || "User"}
             <img
               className="sn_navigation__logout-icon"
               src={logoutIcon}

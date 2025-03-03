@@ -12,7 +12,7 @@ export default function SavedNews({ isLoggedIn }) {
       <div className="saved-news__header_container">
         <p className="saved-news__preheader">Saved articles</p>
         <h2 className="saved-news__title">
-          {currentUser.name || "User"}, you have {savedNewsArticles.length}{" "}
+          {currentUser.username || "User"}, you have {savedNewsArticles.length}{" "}
           saved articles
         </h2>
         <p className="saved-news__keywords">

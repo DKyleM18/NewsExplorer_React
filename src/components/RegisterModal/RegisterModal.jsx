@@ -7,6 +7,7 @@ export default function RegisterModal({
   activeModal,
   setActiveModal,
   isLoading,
+  handleRegistration,
 }) {
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -53,7 +54,7 @@ export default function RegisterModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     setActiveModal("confirm");
-    // handleRegistration({ email, password, username });
+    handleRegistration({ username, email, password });
   };
 
   const handleSigninClick = () => {

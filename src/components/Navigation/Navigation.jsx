@@ -28,7 +28,7 @@ export default function Navigation({
             type="button"
             className="navigation__user-button"
           >
-            {currentUser.name || "User"}
+            {currentUser.username || "User"}
             <img
               className="navigation__logout-icon"
               src={logoutIcon}

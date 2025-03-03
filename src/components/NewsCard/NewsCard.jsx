@@ -7,9 +7,16 @@ export default function NewsCard({
   description,
   source,
   isLoggedIn,
+  url,
 }) {
+  const handleCardClick = (event) => {
+    if (!event.target.classList.contains("news-card__save-button")) {
+      window.open(url, "_blank");
+    }
+  };
+
   return (
-    <li className="news-card">
+    <li className="news-card" onClick={handleCardClick}>
       <button
         type="button"
         className={`news-card__save-button ${isLoggedIn ? "isLoggedIn" : ""}`}

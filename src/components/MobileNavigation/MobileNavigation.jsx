@@ -12,7 +12,7 @@ export default function MobileNavigation({
 }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const savedNews = useLocation().pathname === "/saved-news";
+  const savedNews = useLocation().pathname === "/news/saved-news";
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -68,7 +68,7 @@ export default function MobileNavigation({
                 type="button"
                 className="mobile-navigation__user-button"
               >
-                {currentUser.name || "User"}
+                {currentUser.username || "User"}
                 <img
                   className="navigation__logout-icon"
                   src={logoutIcon}

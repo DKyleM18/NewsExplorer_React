@@ -1,13 +1,13 @@
 import { baseUrl, request } from "./api";
 
-function signup({ name, email, password }) {
+function signup({ username, email, password }) {
   return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      name,
+      username,
       email,
       password,
     }),
@@ -26,12 +26,6 @@ function signin({ email, password }) {
     }),
   });
 }
-
-export const authorize = () => {
-  return new Promise((resolve) => {
-    resolve({ token: "a fake token" });
-  });
-};
 
 function checkToken(token) {
   return request(`${baseUrl}/users/me`, {
