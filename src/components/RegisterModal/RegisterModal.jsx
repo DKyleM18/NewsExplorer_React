@@ -71,6 +71,7 @@ export default function RegisterModal({
     <ModalWithForm
       email={email}
       password={password}
+      username={username}
       emailError={emailError}
       passwordError={passwordError}
       activeModal={activeModal}

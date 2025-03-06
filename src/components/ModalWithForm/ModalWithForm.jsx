@@ -12,6 +12,7 @@ export default function ModalWithForm({
   activeModal,
   email,
   password,
+  username,
   emailError,
   passwordError,
 }) {
@@ -26,7 +27,13 @@ export default function ModalWithForm({
             <button
               type="submit"
               className="modal__submit"
-              disabled={!email || !password || emailError || passwordError}
+              disabled={
+                !email ||
+                !password ||
+                emailError ||
+                passwordError ||
+                (activeModal === "register" && !username)
+              }
             >
               {buttonText}
             </button>
