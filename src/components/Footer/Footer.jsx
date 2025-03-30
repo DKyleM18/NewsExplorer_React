@@ -9,7 +9,7 @@ export default function Footer() {
       </p>
       <div className="footer__links">
         <div className="footer__links-text">
-          <a href="https://d.kyle.blinklab.com" className="footer__link">
+          <a href="https://dkylem.com" className="footer__link">
             Portfolio
           </a>
         </div>

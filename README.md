@@ -4,7 +4,7 @@ This is a website built with React + Vite. It allows users to search news topics
 
 ## Live Site
 
-This website is being hosted on my portfolio page at https://d.kyle.blinklab.com/news
+This website is being hosted on my portfolio page at https://dkylem.com/news
 
 ## Current State
 

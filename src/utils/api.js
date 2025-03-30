@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.d.kyle.blinklab.com/news"
+    ? "https://api.dkylem.com/news"
     : "http://localhost:3001/news";
 
 function checkResponse(res) {

@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* dkylem18@d.kyle.blinklab.com:/home/dkylem18/frontend/news"
+    "deploy": "npm run build && scp -r ./dist/* dkylem18@dkylem.com:/home/dkylem18/frontend/news"
   },
   "dependencies": {
     "react": "^18.3.1",
