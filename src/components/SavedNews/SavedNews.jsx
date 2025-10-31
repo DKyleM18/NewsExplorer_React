@@ -6,7 +6,7 @@ import SavedNewsCardList from "../SavedNewsCardList/SavedNewsCardList";
 
 export default function SavedNews({ isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
-  const savedNewsArticles = useContext(SavedNewsArticlesContext);
+  const { savedNewsArticles } = useContext(SavedNewsArticlesContext);
   return (
     <section className="saved-news">
       <div className="saved-news__header_container">

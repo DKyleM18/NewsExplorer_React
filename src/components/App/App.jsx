@@ -152,7 +152,12 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <SavedNewsArticlesContext.Provider value={savedCards}>
+      <SavedNewsArticlesContext.Provider
+        value={{
+          savedNewsArticles: savedCards,
+          setSavedNewsArticles: setSavedCards,
+        }}
+      >
         <div className="app">
           <div className="app__content">
             <Routes>

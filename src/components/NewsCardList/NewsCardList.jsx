@@ -23,6 +23,7 @@ export default function NewsCardList({ newsCards, isLoggedIn }) {
             })}
             description={card.description}
             source={card.source.name}
+            keyword={card.keyword}
             url={card.url}
           />
         ))}

@@ -1,13 +1,17 @@
 import "./NewsCard.css";
-
+import { useContext, useMemo, useState } from "react";
+import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
+import { addSavedCard /*, removeSavedCard */ } from "../../utils/api";
 export default function NewsCard({
   imageUrl,
   title,
   date,
   description,
+
   source,
   isLoggedIn,
   url,
+  keyword,
 }) {
   const handleCardClick = (event) => {
     if (!event.target.classList.contains("news-card__save-button")) {

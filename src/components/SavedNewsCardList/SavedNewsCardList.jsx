@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { SavedNewsArticlesContext } from "../../contexts/SavedNewsArticlesContext";
 
 export default function SavedNewsCardList() {
-  const savedNewsArticles = useContext(SavedNewsArticlesContext);
+  const { savedNewsArticles } = useContext(SavedNewsArticlesContext);
   return (
     <section className="saved-news-cards">
       <ul className="saved-news-cards__list">
